@@ -1,0 +1,25 @@
+def get_federal_land_info(longitude, latitude):
+    url = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Federal_Lands/FeatureServer/0/query"
+    params = {
+        'f': 'json',
+        'geometry': f'{longitude},{latitude}',
+        'geometryType': 'esriGeometryPoint',
+        'spatialRel': 'esriSpatialRelIntersects',
+        'inSR': '4326',
+        'outFields': 'Agency,unit_name,link',
+        'returnGeometry': 'false'
+    }
+
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if len(data['features']) > 0:
+        # Extract the first feature (assuming only one feature intersects with the point)
+        feature = data['features'][0]['attributes']
+        return {
+            'Agency': feature['Agency'],
+            'Unit Name': feature['unit_name'],
+            'Link Code': feature['link']
+        }
+    else:
+        return None
