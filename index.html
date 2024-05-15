@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>US Federal Public Land Location Checker</title>
+    <title>Find Federal Public Lands</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body {
@@ -17,6 +17,7 @@
             margin-top: 20px;
             color: #333;
             text-align: center;
+            font-size: 24px;
         }
         .button {
             background-color: #4CAF50;
@@ -26,7 +27,17 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+        }
+        .button_dark {
+            background-color: #282E78;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
         }
         .button:hover {
             background-color: #45a049;
@@ -36,7 +47,7 @@
             margin: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 18px;
         }
         #result {
             display: none;
@@ -82,7 +93,7 @@
         #bor { background-color: #f9f6a0; color: black; }
         #dod { background-color: #ff88a5; color: white; }
         #fws { background-color: #006400; color: white; }
-        #fs { background-color: #90ee90; color: black; }
+        #fs { background-color: #81b1ce; color: black; }
         #nps { background-color: #dda0dd; color: white; }
         #disclaimer {
             font-size: 12px;
@@ -100,9 +111,9 @@
         var federalLandsLayer;
 
         function initMap() {
-            map = L.map('map').setView([38.9072, -77.0369], 13); // Default view centered on Washington, DC
+            map = L.map('map').setView([40.014984, -105.270546], 8); // Default view centered on Boulder, CO
 
-            L.esri.basemapLayer('Gray').addTo(map);
+            L.esri.basemapLayer('Topographic').addTo(map);
 
             federalLandsLayer = L.esri.featureLayer({
                 url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Federal_Lands/FeatureServer/0',
@@ -112,7 +123,7 @@
                         case 'Bureau of Reclamation': return { color: "#f9f6a0", weight: 2 };
                         case 'Department of Defense': return { color: "#ff88a5", weight: 2 };
                         case 'Fish and Wildlife Service': return { color: "#006400", weight: 2 };
-                        case 'Forest Service': return { color: "#90ee90", weight: 2 };
+                        case 'Forest Service': return { color: "#81b1ce", weight: 2 };
                         case 'National Park Service': return { color: "#dda0dd", weight: 2 };
                     }
                 },
@@ -176,12 +187,12 @@
                     var resultDiv = document.getElementById("result");
                     if (data.on_federal_land) {
                         resultDiv.innerHTML = `
-                            <strong>This location is on federal land managed by ${data.agency}.</strong><br>
+                            <strong>This location is on Federal public land managed by ${data.agency}.</strong><br>
                             <strong>Unit Name:</strong> ${data.unit_name}<br>
                             <strong>Link Code:</strong> <a href="${data.link_code}" target="_blank">${data.link_code}</a>
                         `;
                     } else {
-                        resultDiv.innerHTML = "<strong>This location is not on federal land.</strong>";
+                        resultDiv.innerHTML = "<strong>This location is not on Federal public land.</strong>";
                     }
                     resultDiv.style.display = "block";
                 });
@@ -202,7 +213,7 @@
             document.getElementById("result").style.display = "none";
             document.getElementById("latitude").value = "";
             document.getElementById("longitude").value = "";
-            map.setView([38.9072, -77.0369], 13);
+            map.setView([40.014984, -105.270546], 8);
             if (marker) {
                 map.removeLayer(marker);
                 marker = null;
@@ -213,14 +224,16 @@
     </script>
 </head>
 <body>
-    <h1>US Federal Public Land Location Checker</h1>
-    <button class="button" onclick="getLocation()">Get My Location</button>
+    <h1>Find American Federal Public Lands</h1>
+    <button class="button_dark" onclick="getLocation()">Get and Check My Location</button>
     <br>
+    <div id="disclaimer">
+        OR
     <input type="text" id="latitude" class="input-field" placeholder="Latitude">
     <input type="text" id="longitude" class="input-field" placeholder="Longitude">
     <button class="button" onclick="submitCoordinates()">Submit Coordinates</button>
     <br>
-    <button class="button" onclick="resetCheck()">Check New Location</button>
+    <button class="button_dark" onclick="resetCheck()">Reset and Check New Location</button>
     <div id="result"></div>
     <div id="map"></div>
     <div id="color-key">
