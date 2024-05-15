@@ -89,12 +89,12 @@
             width: 100%;
             height: 20px; /* Adjust the height as needed */
         }
-        #blm { background-color: #f3a64c; color: white; }
-        #bor { background-color: #f9f6a0; color: black; }
-        #dod { background-color: #ff88a5; color: white; }
-        #fws { background-color: #006400; color: white; }
-        #fs { background-color: #81b1ce; color: black; }
-        #nps { background-color: #dda0dd; color: white; }
+        #blm { background-color: #ff7f00; color: white; }
+        #bor { background-color: #ffff33; color: black; }
+        #dod { background-color: #e41a1c; color: white; }
+        #fws { background-color: #377eb8; color: white; }
+        #fs { background-color: #984ea3; color: white; }
+        #nps { background-color: #4daf4a; color: white; }
         #disclaimer {
             font-size: 12px;
             font-style: italic;
@@ -119,12 +119,12 @@
                 url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Federal_Lands/FeatureServer/0',
                 style: function(feature) {
                     switch (feature.properties.Agency) {
-                        case 'Bureau of Land Management': return { color: "#f3a64c", weight: 2 };
-                        case 'Bureau of Reclamation': return { color: "#f9f6a0", weight: 2 };
-                        case 'Department of Defense': return { color: "#ff88a5", weight: 2 };
-                        case 'Fish and Wildlife Service': return { color: "#006400", weight: 2 };
-                        case 'Forest Service': return { color: "#81b1ce", weight: 2 };
-                        case 'National Park Service': return { color: "#dda0dd", weight: 2 };
+                        case 'Bureau of Land Management': return { color: "#ff7f00", weight: 2 };
+                        case 'Bureau of Reclamation': return { color: "#ffff33", weight: 2 };
+                        case 'Department of Defense': return { color: "#e41a1c", weight: 2 };
+                        case 'Fish and Wildlife Service': return { color: "#377eb8", weight: 2 };
+                        case 'Forest Service': return { color: "#984ea3", weight: 2 };
+                        case 'National Park Service': return { color: "#4daf4a", weight: 2 };
                     }
                 },
                 onEachFeature: function(feature, layer) {
@@ -246,5 +246,5 @@
         <div id="nps">National Park Service</div>
     </div>
     <div id="disclaimer">
-    This map displays Federal public lands administered by the six primary land administration agencies, comprising the vast majority of U.S. Federal public lands. Lands administered by other agencies (such as the USDA National Arboretum in DC, Federal office buildings, or U.S. Coast Guard stations) will not be displayed. This data should not be considered authoritative and should not be used for legal purposes.
+    *This map displays Federal public lands administered by the six primary land administration agencies, comprising the vast majority of U.S. Federal public lands. Lands administered by other agencies (such as the USDA National Arboretum in DC, Federal office buildings, or U.S. Coast Guard stations) will not be displayed. This data should not be considered authoritative and should not be used for legal purposes.
     </div>
