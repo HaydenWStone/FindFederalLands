@@ -11,13 +11,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f9f9f9;
+            background-color: #FFFFFF;
         }
         h1 {
             margin-top: 20px;
             color: #333;
             text-align: center;
-            font-size: 24px;
+            font-size: 30px;
         }
         .button {
             background-color: #4CAF50;
@@ -64,10 +64,10 @@
         }
         #map {
             height: 50vh;
-            width: 90%;
-            max-width: 600px;
+            width: 100%;
+            max-width: 1500px;
             margin: 20px 0;
-            border: 1px solid #ddd;
+            border: 5px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -192,7 +192,7 @@
                             <strong>Link Code:</strong> <a href="${data.link_code}" target="_blank">${data.link_code}</a>
                         `;
                     } else {
-                        resultDiv.innerHTML = "<strong>This location is not on Federal public land.</strong>";
+                        resultDiv.innerHTML = "<strong>This location is not on Federal public land*</strong>";
                     }
                     resultDiv.style.display = "block";
                 });
@@ -228,7 +228,7 @@
     <button class="button_dark" onclick="getLocation()">Get and Check My Location</button>
     <br>
     <div id="disclaimer">
-        OR
+        OR INPUT
     <input type="text" id="latitude" class="input-field" placeholder="Latitude">
     <input type="text" id="longitude" class="input-field" placeholder="Longitude">
     <button class="button" onclick="submitCoordinates()">Submit Coordinates</button>
@@ -246,4 +246,5 @@
         <div id="nps">National Park Service</div>
     </div>
     <div id="disclaimer">
-        This map displays Federal public lands administered by the six primary land administration agencies, comprising the vast majority of U.S. Federal public lands. Lands administered by other agencies (such as the U.S. Department of Agriculture's National Arboretum, Federal office buildings, or U.S. Coast Guard stations) will not be displayed. This data should not be considered authoritative and should not be used for legal purposes.
+    This map displays Federal public lands administered by the six primary land administration agencies, comprising the vast majority of U.S. Federal public lands. Lands administered by other agencies (such as the USDA National Arboretum in DC, Federal office buildings, or U.S. Coast Guard stations) will not be displayed. This data should not be considered authoritative and should not be used for legal purposes.
+    </div>
